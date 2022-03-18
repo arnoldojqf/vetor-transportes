@@ -8,8 +8,8 @@ import ArrowForward from '@material-ui/icons/ArrowForward';
 import logo from 'ba-images/logo.svg';
 import { LoginForm } from 'ba-components';
 import styles from 'ba-components/Forms/user-jss';
-
 import { Grid, Hidden, Typography } from '@material-ui/core';
+import { accountService } from '../../../services/account.service';
 
 class Login extends React.Component {
   state = {
@@ -18,9 +18,15 @@ class Login extends React.Component {
 
   submitForm(values) {
     setTimeout(() => {
-      this.setState({ valueForm: values });
-      console.log(`You submitted:\n\n${this.state.valueForm}`);
-      window.location.href = '/app';
+      this.setState({ valueForm: JSON.parse(JSON.stringify(values, null, 2)) }); 
+
+      accountService.login(this.state.valueForm.email, this.state.valueForm.password)
+            .then(() => {
+                window.location.href = '/app';
+            })
+            .catch(error => {
+                console.log('Login error: ', error);
+            });      
     }, 500); // simulate server latency
   }
 

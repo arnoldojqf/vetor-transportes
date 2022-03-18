@@ -197,9 +197,17 @@ module.exports = options => ({
       'ba-api': path.resolve(__dirname, '../../app/api/'),
       'ba-images': path.resolve(__dirname, '../../public/images/'),
       'ba-vendor': path.resolve(__dirname, '../../node_modules/'),
+      'ba-app-helpers': path.resolve(__dirname, '../../app/helpers/'),
+      'ba-app-services': path.resolve(__dirname, '../../app/services/'),
     }
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
+  externals: {
+    // global app config object
+    config: JSON.stringify({
+        apiUrl: 'http://localhost:4000'
+    })
+  },
 });
