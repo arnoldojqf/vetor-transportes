@@ -6,6 +6,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
 import { Avatar, Typography, Menu, MenuItem, Button, IconButton } from '@material-ui/core';
 import styles from './jss/cover-jss';
+import { accountService } from '../../services/account.service';
 
 
 const optionsOpt = [
@@ -27,8 +28,14 @@ class Cover extends React.Component {
     this.setState({ anchorElOpt: event.currentTarget });
   };
 
-  handleCloseOpt = () => {
+  handleCloseOpt = option => event => {
     this.setState({ anchorElOpt: null });
+
+    if(option === 'Edit Profile')
+    {
+            console.log(accountService.userValue);
+    }
+
   };
 
   render() {
@@ -68,7 +75,7 @@ class Cover extends React.Component {
             }}
           >
             {optionsOpt.map(option => (
-              <MenuItem key={option} selected={option === 'Edit Profile'} onClick={this.handleCloseOpt}>
+              <MenuItem key={option} selected={option === 'Edit Profile'} onClick={this.handleCloseOpt(option)}>
                 {option}
               </MenuItem>
             ))}

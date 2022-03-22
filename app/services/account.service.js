@@ -28,7 +28,7 @@ function login(email, password) {
     return fetchWrapper.post(`${baseUrl}/authenticate`, { email, password })
         .then(user => {
             // publish user to subscribers and start timer to refresh token
-            userSubject.next(user);
+            userSubject.next(user);            
             startRefreshTokenTimer();
             return user;
         });
