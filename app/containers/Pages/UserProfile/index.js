@@ -18,6 +18,7 @@ import {
   Favorites,
   Albums
 } from 'ba-components';
+import user from '../../../shared/UserProfile';
 
 import { AppBar, Tabs, Tab, Hidden } from '@material-ui/core';
 
@@ -51,6 +52,8 @@ class UserProfile extends React.Component {
     const description = brand.desc;
     const { dataProps } = this.props;
     const { value } = this.state;
+    const userData = JSON.parse(user.getUserProfile());    
+    const name = userData.firstName + ' ' + userData.lastName;
     return (
       <div>
         <Helmet>
@@ -64,7 +67,7 @@ class UserProfile extends React.Component {
         <Cover
           coverImg="/images/material_bg.svg"
           avatar={dummy.user.avatar}
-          name={dummy.user.name}
+          name={name}
           desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         />
         <AppBar position="static" color="default">

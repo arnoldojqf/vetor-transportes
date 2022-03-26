@@ -6,7 +6,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
 import { Avatar, Typography, Menu, MenuItem, Button, IconButton } from '@material-ui/core';
 import styles from './jss/cover-jss';
-import { accountService } from '../../services/account.service';
+import UserProfile from '../../shared/UserProfile';
 
 
 const optionsOpt = [
@@ -33,7 +33,7 @@ class Cover extends React.Component {
 
     if(option === 'Edit Profile')
     {
-            console.log(accountService.userValue);
+            console.log('cover', UserProfile.getUserProfile());
     }
 
   };

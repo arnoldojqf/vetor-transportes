@@ -2,6 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import config from 'config';
 import { fetchWrapper, history } from 'ba-app-helpers';
+import UserProfile from '../shared/UserProfile'
 
 const userSubject = new BehaviorSubject(null);
 const baseUrl = `${config.apiUrl}/accounts`;
@@ -28,7 +29,8 @@ function login(email, password) {
     return fetchWrapper.post(`${baseUrl}/authenticate`, { email, password })
         .then(user => {
             // publish user to subscribers and start timer to refresh token
-            userSubject.next(user);            
+            userSubject.next(user);   
+            UserProfile.setUserProfile(JSON.stringify(user));
             startRefreshTokenTimer();
             return user;
         });
@@ -39,6 +41,7 @@ function logout() {
     fetchWrapper.post(`${baseUrl}/revoke-token`, {});
     stopRefreshTokenTimer();
     userSubject.next(null);
+    UserProfile.setUserProfile("");
     history.push('/account/login');
 }
 

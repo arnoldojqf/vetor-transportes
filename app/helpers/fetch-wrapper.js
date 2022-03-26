@@ -1,5 +1,5 @@
 import config from 'config';
-import { accountService } from '../../app/services/account.service';
+import UserProfile from '../shared/UserProfile'
 
 export const fetchWrapper = {
     get,
@@ -48,7 +48,7 @@ function _delete(url) {
 
 function authHeader(url) {
     // return auth header with jwt if user is logged in and request is to the api url
-    const user = accountService.userValue;
+    const user = UserProfile.getUserProfile;
     const isLoggedIn = user && user.jwtToken;
     const isApiUrl = url.startsWith(config.apiUrl);
     if (isLoggedIn && isApiUrl) {
@@ -63,9 +63,9 @@ function handleResponse(response) {
         const data = text && JSON.parse(text);
         
         if (!response.ok) {
-            if ([401, 403].includes(response.status) && accountService.userValue) {
+            if ([401, 403].includes(response.status) && UserProfile.getUserProfile) {
                 // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
-                accountService.logout();
+                //accountService.logout();
             }
 
             const error = (data && data.message) || response.statusText;

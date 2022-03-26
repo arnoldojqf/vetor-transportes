@@ -24,6 +24,7 @@ import messageStyles from 'ba-styles/Messages.scss';
 import avatarApi from 'ba-api/avatars';
 import link from 'ba-api/link';
 import styles from './header-jss';
+import UserProfile from '../../shared/UserProfile';
 
 function UserMenu(props) {
   const { classes, dark } = props;
@@ -35,9 +36,14 @@ function UserMenu(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = option => () => {
     setOpenMenu(null);
     setAnchorEl(null);
+
+    if(option === 'logout')
+    {
+      UserProfile.setUserProfile(null);
+    }
   };
 
   return (
@@ -70,9 +76,9 @@ function UserMenu(props) {
           },
         }}
         open={openMenu === 'notification'}
-        onClose={handleClose}
+        onClose={handleClose("")}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose("")}>
           <div className={messageStyles.messageInfo}>
             <ListItemAvatar>
               <Avatar alt="User Name" src={avatarApi[0]} />
@@ -81,7 +87,7 @@ function UserMenu(props) {
           </div>
         </MenuItem>
         <Divider variant="inset" />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose("")}>
           <div className={messageStyles.messageInfo}>
             <ListItemAvatar>
               <Avatar className={messageStyles.icon}>
@@ -92,7 +98,7 @@ function UserMenu(props) {
           </div>
         </MenuItem>
         <Divider variant="inset" />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose("")}>
           <div className={messageStyles.messageSuccess}>
             <ListItemAvatar>
               <Avatar className={messageStyles.icon}>
@@ -103,7 +109,7 @@ function UserMenu(props) {
           </div>
         </MenuItem>
         <Divider variant="inset" />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose("")}>
           <div className={messageStyles.messageWarning}>
             <ListItemAvatar>
               <Avatar className={messageStyles.icon}>
@@ -114,7 +120,7 @@ function UserMenu(props) {
           </div>
         </MenuItem>
         <Divider variant="inset" />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose("")}>
           <div className={messageStyles.messageError}>
             <ListItemAvatar>
               <Avatar className={messageStyles.icon}>
@@ -143,18 +149,18 @@ function UserMenu(props) {
           horizontal: 'right',
         }}
         open={openMenu === 'user-setting'}
-        onClose={handleClose}
+        onClose={handleClose("")}
       >
-        <MenuItem onClick={handleClose} component={Link} to={link.profile}>My Profile</MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to={link.calendar}>My Calendar</MenuItem>
-        <MenuItem onClick={handleClose} component={Link} to={link.email}>
+        <MenuItem onClick={handleClose("")} component={Link} to={link.profile}>My Profile</MenuItem>
+        <MenuItem onClick={handleClose("")} component={Link} to={link.calendar}>My Calendar</MenuItem>
+        <MenuItem onClick={handleClose("")} component={Link} to={link.email}>
           My Inbox
           <ListItemIcon>
             <Badge className={classNames(classes.badge, classes.badgeMenu)} badgeContent={2} color="secondary" />
           </ListItemIcon>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose} component={Link} to="/">
+        <MenuItem onClick={handleClose("logout")} component={Link} to="/">
           <ListItemIcon>
             <ExitToApp />
           </ListItemIcon>
