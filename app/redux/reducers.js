@@ -12,6 +12,7 @@ import uiReducer from './modules/ui';
 import treeTable from './modules/treeTable';
 import crudTable from './modules/crudTable';
 import crudTableForm from './modules/crudTableForm';
+import crudTbFormAccounts from './modules/crudTbFormAccounts';
 import socmed from './modules/socialMedia';
 import ecommerce from './modules/ecommerce';
 import contact from './modules/contact';
@@ -55,6 +56,8 @@ export default function createReducer(injectedReducers) {
     crudTableDemo: branchReducer(crudTable, 'crudTableDemo'),
     crudTableForm,
     crudTbFrmDemo: branchReducer(crudTableForm, 'crudTbFrmDemo'),
+    crudTbFormAccounts,
+    crudTbFrmAccounts: branchReducer(crudTbFormAccounts, 'crudTbFrmAccounts'),
     language: languageProviderReducer,
     router: connectRouter(history),
     ...injectedReducers,

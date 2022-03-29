@@ -7,6 +7,12 @@ export const CrudTableTwoPage = Loadable({
   loading: Loading,
 });
 
+//Cadastro
+export const Accounts = Loadable({
+  loader: () => import('./Management/Accounts'),
+  loading: Loading,
+});
+
 // Dashboard
 export const DashboardV1 = Loadable({
   loader: () => import('./Dashboard/Dashboard'),

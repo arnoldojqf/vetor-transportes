@@ -25,7 +25,7 @@ import {
   Profile, BlankPage,
   Photos, Error, Settings,
   HelpSupport, MapMarker, MapDirection, SearchMap,
-  TrafficIndicator, StreetViewMap, NotFound, CrudTableTwoPage
+  TrafficIndicator, StreetViewMap, NotFound, CrudTableTwoPage, Accounts
 } from '../pageListAsync';
 
 function Application(props) {
@@ -40,6 +40,8 @@ function Application(props) {
         <Route path="/app/operacao" component={CrudTableTwoPage} />
         { /* Financeiro */ }
         <Route path="/app/financeiro/suporte-contabil" component={CrudTableTwoPage} />
+        { /* Cadastro */ }
+        <Route path="/app/cadastro/usuarios" component={Accounts} />
         { /* Layout */ }
         <Route exact path="/app/layouts" component={Parent} />
         <Route path="/app/layouts/grid" component={Grid} />

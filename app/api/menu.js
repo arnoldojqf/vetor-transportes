@@ -29,9 +29,9 @@ module.exports = [
     icon: 'business',
     child: [
       {
-        key: 'dashboard_v1',
-        name: 'Dashboard V1',
-        link: '/app/cadastro'
+        key: 'usuarios',
+        name: 'Usuários',
+        link: '/app/cadastro/usuarios'
       },
     ]
   },
