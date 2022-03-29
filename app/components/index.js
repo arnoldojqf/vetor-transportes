@@ -24,6 +24,7 @@ export CrudTableForm from './Tables/CrudTableForm';
 export AdvTable from './Tables/AdvTable';
 export EmptyData from './Tables/EmptyData';
 // Form
+export ErrorNotification from './ErrorNotification/ErrorNotification';
 export Notification from './Notification/Notification';
 export MaterialDropZone from './Forms/MaterialDropZone';
 export LoginForm from './Forms/LoginForm';

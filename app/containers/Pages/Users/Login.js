@@ -6,14 +6,15 @@ import { withStyles } from '@material-ui/core/styles';
 import Type from 'ba-styles/Typography.scss';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import logo from 'ba-images/logo.svg';
-import { LoginForm } from 'ba-components';
+import { LoginForm, ErrorNotification } from 'ba-components';
 import styles from 'ba-components/Forms/user-jss';
 import { Grid, Hidden, Typography } from '@material-ui/core';
 import { accountService } from '../../../services/account.service';
 
 class Login extends React.Component {
   state = {
-    valueForm: []
+    valueForm: [],
+    messageNotif: ""
   }
 
   submitForm(values) {
@@ -25,6 +26,7 @@ class Login extends React.Component {
                 window.location.href = '/app';
             })
             .catch(error => {
+              this.setState({messageNotif: error})
                 console.log('Login error: ', error);
             });      
     }, 500); // simulate server latency
@@ -75,6 +77,7 @@ class Login extends React.Component {
                 {/* ----------------------------------------------------------------------*/}
                 {/* Load Login Form */}
                 <LoginForm onSubmit={(values) => this.submitForm(values)} />
+                <ErrorNotification message={this.state.messageNotif} />
               </Grid>
             </Grid>
           </Grid>
