@@ -113,7 +113,7 @@ class ErrorNotification extends React.Component {
     if (reason === 'clickaway') {
       return;
     }
-    this.setState({ openStyle: false });
+    this.props.close();    
   };
 
   render() {
@@ -142,6 +142,7 @@ class ErrorNotification extends React.Component {
 
 ErrorNotification.propTypes = {
   classes: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
 };
 

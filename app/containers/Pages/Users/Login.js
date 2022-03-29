@@ -77,7 +77,7 @@ class Login extends React.Component {
                 {/* ----------------------------------------------------------------------*/}
                 {/* Load Login Form */}
                 <LoginForm onSubmit={(values) => this.submitForm(values)} />
-                <ErrorNotification message={this.state.messageNotif} />
+                <ErrorNotification close={() => { this.setState({messageNotif: ""}) }} message={this.state.messageNotif} />
               </Grid>
             </Grid>
           </Grid>
