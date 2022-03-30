@@ -48,10 +48,12 @@ function _delete(url) {
 
 function authHeader(url) {
     // return auth header with jwt if user is logged in and request is to the api url
-    const user = UserProfile.getUserProfile;
-    const isLoggedIn = user && user.jwtToken;
-    const isApiUrl = url.startsWith(config.apiUrl);
+    const user = JSON.parse(UserProfile.getUserProfile());
+    console.log('user', user);    
+    const isLoggedIn = user && user.jwtToken;    
+    const isApiUrl = url.startsWith(config.apiUrl);    
     if (isLoggedIn && isApiUrl) {
+        console.log('Bearer', user.jwtToken);
         return { Authorization: `Bearer ${user.jwtToken}` };
     } else {
         return {};

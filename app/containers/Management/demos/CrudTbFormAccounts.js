@@ -72,13 +72,16 @@ const styles = ({
   }
 });
 
+var dataApiDB = [];
+accountService.getAll().then(data => { dataApiDB = data; console.log('dataApiDB', dataApiDB); });
+
+
+
 class CrudTbFormAccounts extends Component {
   saveRef = ref => {
     this.ref = ref;
     return this.ref;
-  };
-
-  dataApi = accountService.getAll().then(data => { return data; });
+  };  
 
   render() {
     const {
@@ -103,7 +106,7 @@ class CrudTbFormAccounts extends Component {
           <CrudTableForm
             dataTable={dataTable}
             openForm={openForm}
-            dataInit={dataApi}
+            dataInit={dataApiDB}
             anchor={anchorTable}
             title="Title of Table"
             fetchData={fetchData}
