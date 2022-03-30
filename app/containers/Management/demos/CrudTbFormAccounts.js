@@ -30,7 +30,7 @@ import {
   FormLabel,
   FormControlLabel,
 } from '@material-ui/core';
-import { anchorTable, dataApi } from './sampleData';
+import { anchorTable, dataApi } from './data';
 import { accountService } from '../../../services/account.service'
 
 
@@ -74,8 +74,6 @@ const styles = ({
 
 var dataApiDB = [];
 accountService.getAll().then(data => { dataApiDB = data; console.log('dataApiDB', dataApiDB); });
-
-
 
 class CrudTbFormAccounts extends Component {
   saveRef = ref => {
@@ -121,7 +119,7 @@ class CrudTbFormAccounts extends Component {
             {/* Create Your own form, then arrange or custom it as You like */}
             <div>
               <Field
-                name="text"
+                name="_id"
                 component={TextFieldRedux}
                 placeholder="Text Field"
                 label="Text Field"
@@ -133,54 +131,51 @@ class CrudTbFormAccounts extends Component {
             </div>
             <div>
               <Field
+                name="firstName"
+                component={TextFieldRedux}
+                placeholder="Nome"
+                label="Nome"
+                required
+                validate={[required]}
+                className={classes.field}
+              />
+            </div>
+            <div>
+              <Field
+                name="lastName"
+                component={TextFieldRedux}
+                placeholder="Sobrenome"
+                label="Sobrenome"
+                required
+                validate={[required]}
+                className={classes.field}
+              />
+            </div>
+            <div>
+              <Field
                 name="email"
                 component={TextFieldRedux}
-                placeholder="Email Field"
+                placeholder="Email"
                 label="Email"
                 required
                 validate={[required, email]}
                 className={classes.field}
               />
             </div>
-            <div className={classes.fieldBasic}>
-              <FormLabel component="label">Choose One Option</FormLabel>
-              <Field name="radio" className={classes.inlineWrap} component={renderRadioGroup}>
-                <FormControlLabel value="option1" control={<Radio />} label="Option 1" />
-                <FormControlLabel value="option2" control={<Radio />} label="Option 2" />
-              </Field>
-            </div>
             <div>
               <FormControl className={classes.field}>
-                <InputLabel htmlFor="selection">Selection</InputLabel>
+                <InputLabel htmlFor="role">Perfil</InputLabel>
                 <Field
-                  name="selection"
+                  name="role"
                   component={SelectRedux}
-                  placeholder="Selection"
+                  placeholder="Selecione o perfil"
                   autoWidth={trueBool}
                 >
-                  <MenuItem value="option1">Option One</MenuItem>
-                  <MenuItem value="option2">Option Two</MenuItem>
-                  <MenuItem value="option3">Option Three</MenuItem>
+                  <MenuItem value="Admin">Administrador</MenuItem>
+                  <MenuItem value="User">Operador</MenuItem>
+                  <MenuItem value="Driver">Motorista</MenuItem>
                 </Field>
               </FormControl>
-            </div>
-            <div className={classes.fieldBasic}>
-              <FormLabel component="label">Toggle Input</FormLabel>
-              <div className={classes.inlineWrap}>
-                <FormControlLabel control={<Field name="onof" component={SwitchRedux} />} label="On/OF Switch" />
-                <FormControlLabel control={<Field name="checkbox" component={CheckboxRedux} />} label="Checkbox" />
-              </div>
-            </div>
-            <div className={classes.field}>
-              <Field
-                name="textarea"
-                className={classes.field}
-                component={TextFieldRedux}
-                placeholder="Textarea"
-                label="Textarea"
-                multiline={trueBool}
-                rows={4}
-              />
             </div>
             {/* No need create button or submit, because that already made in this component */}
           </CrudTableForm>
