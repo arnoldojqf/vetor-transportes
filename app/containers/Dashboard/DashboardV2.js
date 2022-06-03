@@ -38,13 +38,13 @@ class DashboardV2 extends PureComponent {
         <Divider className={classes.divider} />
         <AreaChartWidget />
         <Divider className={classes.divider} />
-        <Grid container spacing={3}>
+        {/* <Grid container spacing={3}>
           <Grid item xs={12}>
             <CarouselWidget />
           </Grid>
         </Grid>
-        <Divider className={classes.divider} />
-        <Grid container spacing={3} className={classes.root}>
+        <Divider className={classes.divider} /> */}
+        {/* <Grid container spacing={3} className={classes.root}>
           <Grid item sm={6} xs={12}>
             <PostCard
               liked={1}
@@ -61,7 +61,7 @@ class DashboardV2 extends PureComponent {
             <AlbumWidget />
           </Grid>
         </Grid>
-        <Divider className={classes.divider} />
+        <Divider className={classes.divider} /> */}
         <Grid container spacing={3} className={classes.root}>
           <Grid item xs={12}>
             <MapWidget />

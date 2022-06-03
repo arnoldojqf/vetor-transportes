@@ -50,7 +50,7 @@ class About extends React.Component {
 
         <Grid item xs={12}>
           {/* Profile Progress */}
-          <div className={classes.progressRoot}>
+          {/* <div className={classes.progressRoot}>
             <Paper className={classes.styledPaper} elevation={4}>
               <Typography className={classes.title} variant="h5" component="h3">
                 <span className={Type.light}>Profile Strength: </span>
@@ -70,7 +70,7 @@ class About extends React.Component {
               </Grid>
               <LinearProgress variant="determinate" className={classes.progress} value={60} />
             </Paper>
-          </div>
+          </div> */}
           {/* ----------------------------------------------------------------------*/}
           {/* About Me */}
           <PapperBlock title="Sobre Mim" whiteBg noMargin desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed urna in justo euismod condimentum.">

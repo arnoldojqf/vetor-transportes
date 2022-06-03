@@ -1,7 +1,8 @@
 export const anchorTable = [
   {
-    name: '_id',
+    name: 'id',
     label: 'Id',
+    type: 'static',
     initialValue: '',
     hidden: true
   }, {

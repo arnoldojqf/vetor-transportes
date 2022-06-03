@@ -25,7 +25,8 @@ import {
   Profile, BlankPage,
   Photos, Error, Settings,
   HelpSupport, MapMarker, MapDirection, SearchMap,
-  TrafficIndicator, StreetViewMap, NotFound, CrudTableTwoPage, Accounts
+  TrafficIndicator, StreetViewMap, NotFound, CrudTableTwoPage, Accounts, 
+  LogisticsAnalitico
 } from '../pageListAsync';
 
 function Application(props) {
@@ -36,6 +37,8 @@ function Application(props) {
       <Switch>
         <Route exact path="/app" component={DashboardV1} />
         <Route exact path="/app/dashboard-v2" component={DashboardV2} />
+        { /* Reports */ }
+        <Route exact path="/app/reports/logistics-analitico" component={LogisticsAnalitico} />
         { /* Operacao */ }
         <Route path="/app/operacao" component={CrudTableTwoPage} />
         { /* Financeiro */ }

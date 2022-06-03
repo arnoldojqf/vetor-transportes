@@ -95,10 +95,10 @@ class UserProfile extends React.Component {
               indicatorColor="primary"
               textColor="primary"
             >
-              <Tab icon={<AccountCircle />} label="ABOUT" />
-              <Tab icon={<SupervisorAccount />} label="20 CONNECTIONS" />
+              {/* <Tab icon={<AccountCircle />} label="ABOUT" /> */}
+              {/* <Tab icon={<SupervisorAccount />} label="20 CONNECTIONS" />
               <Tab icon={<Favorite />} label="18 FAVORITES" />
-              <Tab icon={<PhotoLibrary />} label="4 ALBUMS" />
+              <Tab icon={<PhotoLibrary />} label="4 ALBUMS" /> */}
             </Tabs>
           </Hidden>
         </AppBar>

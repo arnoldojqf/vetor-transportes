@@ -37,7 +37,7 @@ class Dashboard extends PureComponent {
           <meta property="twitter:title" content={title} />
           <meta property="twitter:description" content={description} />
         </Helmet>
-        <Grid container spacing={3} className={classes.root}>
+        {/* <Grid container spacing={3} className={classes.root}>
           <Grid item md={6} sm={12} xs={12}>
             <div className={classes.sliderWrap}>
               <SliderWidget />
@@ -46,7 +46,7 @@ class Dashboard extends PureComponent {
           <Grid item md={6} xs={12} className={classes.noPadding}>
             <CounterGroupWidget />
           </Grid>
-        </Grid>
+        </Grid> */}
         <Divider className={classes.dividerMini} />
         <Grid container spacing={3} className={classes.root}>
           <Grid item xs={12}>
@@ -54,21 +54,19 @@ class Dashboard extends PureComponent {
           </Grid>
         </Grid>
         <Grid container spacing={3} className={classes.root}>
-          <Grid item md={7} xs={12}>
+          <Grid item md={6} xs={12}>
             <Divider className={classes.dividerMini} />
-            <TableWidget />
-            <Divider className={classes.divider} />
-            <TaskWidget />
-            <Divider className={classes.divider} />
+            <TableWidget />            
+            {/* <Divider className={classes.divider} />
             <PlayerCard
               title="Live From Space"
               artist="Mac Miller"
               cover={imgApi[32]}
-            />
+            /> */}
           </Grid>
-          <Grid item md={5}>
-            <Divider className={classes.dividerMini} />
-            <ProfileCard
+          <Grid item md={6}>
+            {/* <Divider className={classes.dividerMini} /> */}
+            {/* <ProfileCard
               cover={imgApi[41]}
               avatar={avatarApi[6]}
               name="John Doe"
@@ -77,14 +75,14 @@ class Dashboard extends PureComponent {
               btnText="See Profile"
               isVerified
             />
-            <Divider className={classes.divider} />
-            <ProgressWidget />
-            <Divider className={classes.divider} />
+            <Divider className={classes.divider} /> */}
+            <TaskWidget />
+            {/* <Divider className={classes.divider} />
             <ProfileWidget />
             <Divider className={classes.divider} />
             <GeneralCard liked={1} shared={20} commented={15}>
               <Quote align="left" content="Imagine all the people living life in peace. You may say I'm a dreamer, but I'm not the only one. I hope someday you'll join us, and the world will be as one." footnote="John Lennon" />
-            </GeneralCard>
+            </GeneralCard> */}
           </Grid>
         </Grid>
       </div>

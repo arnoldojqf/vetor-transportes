@@ -2,7 +2,6 @@ export const anchorTable = [
   {
     name: 'id',
     label: 'Id',
-    type: 'static',
     initialValue: '',
     hidden: true
   }, {

@@ -1,5 +1,22 @@
 module.exports = [
   {
+    key: 'dashboard',
+    name: 'Dashboard',
+    icon: 'dashboard',
+    child: [
+      {
+        key: 'dashboard_v1',
+        name: 'Dashboard',
+        link: '/app'
+      },
+      {
+        key: 'dashboard_v2',
+        name: 'Dashboard V2',
+        link: '/app/dashboard-v2'
+      },
+    ]
+  },
+  {
     key: 'operacao',
     name: 'Operação',
     icon: 'map',
@@ -7,8 +24,20 @@ module.exports = [
       {
         key: 'dashboard_v1',
         name: 'Dashboard V1',
-        link: '/app/operacao'
+        link: '/app'
       },
+    ]
+  },
+  {
+    key: 'reports',
+    name: 'Reports',
+    icon: 'grid_on',
+    child: [
+      {
+        key: 'logistics_analitico',
+        name: 'Logistics Analítico',
+        link: '/app/reports/logistics-analitico'
+      },      
     ]
   },
   {
@@ -34,24 +63,7 @@ module.exports = [
         link: '/app/cadastro/usuarios'
       },
     ]
-  },
-  {
-    key: 'dashboard',
-    name: 'Dashboard',
-    icon: 'dashboard',
-    child: [
-      {
-        key: 'dashboard_v1',
-        name: 'Dashboard V1',
-        link: '/app'
-      },
-      {
-        key: 'dashboard_v2',
-        name: 'Dashboard V2',
-        link: '/app/dashboard-v2'
-      },
-    ]
-  },
+  },  
   {
     key: 'layouts',
     name: 'Layouts',

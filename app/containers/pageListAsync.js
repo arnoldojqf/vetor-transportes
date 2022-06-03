@@ -23,6 +23,12 @@ export const DashboardV2 = Loadable({
   loading: Loading,
 });
 
+// Relatorios
+export const LogisticsAnalitico = Loadable({
+  loader: () => import('./Reports/LogisticsAnalitico'),
+  loading: Loading,
+});
+
 // Layouts
 export const AppLayout = Loadable({
   loader: () => import('./Layouts/AppLayout'),

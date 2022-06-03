@@ -90,11 +90,15 @@ function create(params) {
 function update(id, params) {
     return fetchWrapper.put(`${baseUrl}/${id}`, params)
         .then(user => {
+            const userProfile = UserProfile.getUserProfile();
+            console.log('userProfile', userProfile);
+            console.log('user', user);
             // update stored user if the logged in user updated their own record
-            if (user.id === userSubject.value.id) {
+            if (user.id === userProfile.id) {
                 // publish updated user to subscribers
-                user = { ...userSubject.value, ...user };
-                userSubject.next(user);
+                user = { ...userProfile, ...user };
+                console.log('user = { ...userProfile, ...user };', user);
+                UserProfile.setUserProfile(user);
             }
             return user;
         });

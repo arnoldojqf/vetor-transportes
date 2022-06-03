@@ -39,7 +39,7 @@ class MapWidget extends React.Component {
           containerElement={<div style={{ height: '400px' }} />}
           mapElement={<div style={{ height: '100%' }} />}
         />
-        <div className={classes.address}>
+        {/* <div className={classes.address}>
           <IdentityCard
             title="Contact and Address"
             name={dummy.user.name}
@@ -47,7 +47,7 @@ class MapWidget extends React.Component {
             phone="(+8543201213)"
             address="Town Hall Building no.45 Block C - ABC Street"
           />
-        </div>
+        </div> */}
       </Paper>
     );
   }

@@ -9,6 +9,8 @@ import {
   EDIT_ROW_FORM,
   CLOSE_NOTIF
 } from 'ba-actions/actionTypes';
+import { accountService } from '../../services/account.service'
+import UserProfile from '../../shared/UserProfile'
 
 const initialState = {
   dataTable: List([]),
@@ -51,16 +53,23 @@ export default function reducer(state = initialImmutableState, action = {}) {
       });
     case `${branch}/${SUBMIT_DATA}`:
       return state.withMutations((mutableState) => {
-        if (state.get('editingId') === action.newData.get('id')) {
+        if (state.get('editingId') === action.newData.get('id')) {          
+          console.log('Update data');
+          const user = Object.fromEntries(action.newData);
+          console.log(user);
+          accountService.update(user.id, user);
+          console.log('data updated');
           // Update data
           mutableState
             .update('dataTable', dataTable => dataTable.setIn([editingIndex], action.newData))
             .set('notifMsg', notif.updated);
         } else {
-          // Insert data
+          // Insert data          
           const id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
           const initItem = Map(action.newData);
           const newItem = initItem.update('id', (val = id) => val);
+          console.log('Insert data', newItem);
+          accountService.update(user.id, user);
           mutableState
             .update('dataTable', dataTable => dataTable.unshift(newItem))
             .set('notifMsg', notif.saved);

@@ -30,11 +30,10 @@ import {
   FormLabel,
   FormControlLabel,
 } from '@material-ui/core';
-import { anchorTable, dataApi } from './data';
-import { accountService } from '../../../services/account.service'
+import { anchorTable, dataApi } from './sampleData';
 
 
-const branch = 'crudTbFrmAccounts';
+const branch = 'crudTbFrmDemo';
 
 const renderRadioGroup = ({ input, ...rest }) => (
   <RadioGroup
@@ -72,14 +71,11 @@ const styles = ({
   }
 });
 
-var dataApiDB = [];
-accountService.getAll().then(data => { dataApiDB = data; console.log('dataApiDB', dataApiDB); });
-
-class CrudTbFormAccounts extends Component {
+class CrudTbFormDemo extends Component {
   saveRef = ref => {
     this.ref = ref;
     return this.ref;
-  };  
+  };
 
   render() {
     const {
@@ -97,14 +93,14 @@ class CrudTbFormAccounts extends Component {
       messageNotif,
     } = this.props;
     const trueBool = true;
-    return (      
+    return (
       <div>
         <Notification close={() => closeNotif(branch)} message={messageNotif} />
         <Paper className={classes.root}>
           <CrudTableForm
             dataTable={dataTable}
             openForm={openForm}
-            dataInit={dataApiDB}
+            dataInit={dataApi}
             anchor={anchorTable}
             title="Title of Table"
             fetchData={fetchData}
@@ -119,7 +115,7 @@ class CrudTbFormAccounts extends Component {
             {/* Create Your own form, then arrange or custom it as You like */}
             <div>
               <Field
-                name="id"
+                name="text"
                 component={TextFieldRedux}
                 placeholder="Text Field"
                 label="Text Field"
@@ -131,51 +127,54 @@ class CrudTbFormAccounts extends Component {
             </div>
             <div>
               <Field
-                name="firstName"
-                component={TextFieldRedux}
-                placeholder="Nome"
-                label="Nome"
-                required
-                validate={[required]}
-                className={classes.field}
-              />
-            </div>
-            <div>
-              <Field
-                name="lastName"
-                component={TextFieldRedux}
-                placeholder="Sobrenome"
-                label="Sobrenome"
-                required
-                validate={[required]}
-                className={classes.field}
-              />
-            </div>
-            <div>
-              <Field
                 name="email"
                 component={TextFieldRedux}
-                placeholder="Email"
+                placeholder="Email Field"
                 label="Email"
                 required
                 validate={[required, email]}
                 className={classes.field}
               />
             </div>
+            <div className={classes.fieldBasic}>
+              <FormLabel component="label">Choose One Option</FormLabel>
+              <Field name="radio" className={classes.inlineWrap} component={renderRadioGroup}>
+                <FormControlLabel value="option1" control={<Radio />} label="Option 1" />
+                <FormControlLabel value="option2" control={<Radio />} label="Option 2" />
+              </Field>
+            </div>
             <div>
               <FormControl className={classes.field}>
-                <InputLabel htmlFor="role">Perfil</InputLabel>
+                <InputLabel htmlFor="selection">Selection</InputLabel>
                 <Field
-                  name="role"
+                  name="selection"
                   component={SelectRedux}
-                  placeholder="Selecione o perfil"
+                  placeholder="Selection"
                   autoWidth={trueBool}
                 >
-                  <MenuItem value="Admin">Administrador</MenuItem>
-                  <MenuItem value="User">Operador</MenuItem>
-                  <MenuItem value="Driver">Motorista</MenuItem>
+                  <MenuItem value="option1">Option One</MenuItem>
+                  <MenuItem value="option2">Option Two</MenuItem>
+                  <MenuItem value="option3">Option Three</MenuItem>
                 </Field>
               </FormControl>
+            </div>
+            <div className={classes.fieldBasic}>
+              <FormLabel component="label">Toggle Input</FormLabel>
+              <div className={classes.inlineWrap}>
+                <FormControlLabel control={<Field name="onof" component={SwitchRedux} />} label="On/OF Switch" />
+                <FormControlLabel control={<Field name="checkbox" component={CheckboxRedux} />} label="Checkbox" />
+              </div>
+            </div>
+            <div className={classes.field}>
+              <Field
+                name="textarea"
+                className={classes.field}
+                component={TextFieldRedux}
+                placeholder="Textarea"
+                label="Textarea"
+                multiline={trueBool}
+                rows={4}
+              />
             </div>
             {/* No need create button or submit, because that already made in this component */}
           </CrudTableForm>
@@ -189,7 +188,7 @@ renderRadioGroup.propTypes = {
   input: PropTypes.object.isRequired,
 };
 
-CrudTbFormAccounts.propTypes = {
+CrudTbFormDemo.propTypes = {
   dataTable: PropTypes.object.isRequired,
   openForm: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
@@ -223,9 +222,9 @@ const mapDispatchToProps = dispatch => ({
   closeNotif: bindActionCreators(closeNotifAction, dispatch),
 });
 
-const CrudTbFormAccountsMapped = connect(
+const CrudTbFormDemoMapped = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CrudTbFormAccounts);
+)(CrudTbFormDemo);
 
-export default withStyles(styles)(CrudTbFormAccountsMapped);
+export default withStyles(styles)(CrudTbFormDemoMapped);
