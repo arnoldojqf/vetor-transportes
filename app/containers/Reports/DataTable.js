@@ -1,58 +1,126 @@
 import React from 'react';
 import MUIDataTable from 'mui-datatables';
+import { reportsService } from '../../services/report.service';
 /*
   It uses npm mui-datatables. It's easy to use, you just describe columns and data collection.
   Checkout full documentation here :
   https://github.com/gregnb/mui-datatables/blob/master/README.md
 */
 class DataTable extends React.Component {
-  state = {
-    columns: ['Name', 'Title', 'Location', 'Age', 'Salary'],
-    data: [
-      ['Gabby George', 'Business Analyst', 'Minneapolis', 30, '$100,000'],
-      ['Aiden Lloyd', 'Business Consultant', 'Dallas', 55, '$200,000'],
-      ['Jaden Collins', 'Attorney', 'Santa Ana', 27, '$500,000'],
-      ['Franky Rees', 'Business Analyst', 'St. Petersburg', 22, '$50,000'],
-      ['Aaren Rose', 'Business Consultant', 'Toledo', 28, '$75,000'],
-      ['Blake Duncan', 'Business Management Analyst', 'San Diego', 65, '$94,000'],
-      ['Frankie Parry', 'Agency Legal Counsel', 'Jacksonville', 71, '$210,000'],
-      ['Lane Wilson', 'Commercial Specialist', 'Omaha', 19, '$65,000'],
-      ['Robin Duncan', 'Business Analyst', 'Los Angeles', 20, '$77,000'],
-      ['Mel Brooks', 'Business Consultant', 'Oklahoma City', 37, '$135,000'],
-      ['Harper White', 'Attorney', 'Pittsburgh', 52, '$420,000'],
-      ['Kris Humphrey', 'Agency Legal Counsel', 'Laredo', 30, '$150,000'],
-      ['Frankie Long', 'Industrial Analyst', 'Austin', 31, '$170,000'],
-      ['Brynn Robbins', 'Business Analyst', 'Norfolk', 22, '$90,000'],
-      ['Justice Mann', 'Business Consultant', 'Chicago', 24, '$133,000'],
-      ['Addison Navarro', 'Business Management Analyst', 'New York', 50, '$295,000'],
-      ['Jesse Welch', 'Agency Legal Counsel', 'Seattle', 28, '$200,000'],
-      ['Eli Mejia', 'Commercial Specialist', 'Long Beach', 65, '$400,000'],
-      ['Gene Leblanc', 'Industrial Analyst', 'Hartford', 34, '$110,000'],
-      ['Danny Leon', 'Computer Scientist', 'Newark', 60, '$220,000'],
-      ['Lane Lee', 'Corporate Counselor', 'Cincinnati', 52, '$180,000'],
-      ['Jesse Hall', 'Business Analyst', 'Baltimore', 44, '$99,000'],
-      ['Danni Hudson', 'Agency Legal Counsel', 'Tampa', 37, '$90,000'],
-      ['Terry Macdonald', 'Commercial Specialist', 'Miami', 39, '$140,000'],
-      ['Justice Mccarthy', 'Attorney', 'Tucson', 26, '$330,000'],
-      ['Silver Carey', 'Computer Scientist', 'Memphis', 47, '$250,000'],
-      ['Franky Miles', 'Industrial Analyst', 'Buffalo', 49, '$190,000'],
-      ['Glen Nixon', 'Corporate Counselor', 'Arlington', 44, '$80,000'],
-      ['Gabby Strickland', 'Business Process Consultant', 'Scottsdale', 26, '$45,000'],
-      ['Mason Ray', 'Computer Scientist', 'San Francisco', 39, '$142,000']
-    ]
+  state = { data: [] }
+
+  componentDidMount () {
+    //let items = [];
+
+    reportsService.getLogisticsAnalitico()
+      // .then(resp => 
+      //   //console.log('resp: ', resp) 
+      //   resp.json
+      // )
+      // .then(data => {
+      //     data.forEach(item => {
+      //         let itemAux = item;
+      //         itemAux.initDate = new Date(item.initDate * 1000);
+      //         items.push(itemAux);
+      //         });  
+              
+      //         data = items;
+
+      //         return data;
+      //     })
+          //.then(data => this.setState({ data }));
+          .then(data => this.setState({ data }));
   }
+
   render() {
-    const { columns, data } = this.state;
+    const columns = [
+      {
+        name: "_id",
+        label: "_id",
+        options: {
+          filter: false,
+          display: 'excluded',
+        },
+      },
+      {
+        name: "id",
+        label: "id",
+        options: {
+          filter: false,
+        },
+      },
+      {
+        name: "facilityId",
+        label: "Operação",
+        options: {
+          filter: true,
+        },
+      },
+      {
+        name: "driver.driverName",
+        label: "Motorista",
+        options: {
+          filter: true,          
+        }
+      },      
+      {
+        name: "carrier",
+        label: "Transportadora",
+        options: {
+          filter: true,
+        }
+      },
+      {        
+        name: "counters.total",
+        label: "SPR",
+        options: {
+          filter: false,
+        }
+      },
+      {
+        name: "counters.delivered",
+        Label: "Entregue",
+        options: {
+          filter: false,
+        }
+      },
+      {
+        name: "counters.notDelivered",
+        label: "Insucesso",
+        options: {
+          filter: false,
+        }
+      },
+      {
+        name: "dtInitDate",
+        label: "Data Início",
+        options: {
+          filter: true,
+        }
+      },
+      {
+        name: "dtFinalDate",
+        label: "Data Fim",
+        options: {
+          filter: true,
+        }
+      },
+    ];
+
+    const data = this.state.data;    
+
     const options = {
+      filter: true,
       filterType: 'dropdown',
       responsive: 'stacked',
+      enableNestedDataAccess: '.', // allows nested data separated by "." (see column names and the data structure above)
       print: true,
       rowsPerPage: 10,
-      page: 1
+      page: 1,      
     };
     return (
       <MUIDataTable
-        title="Employee list"
+        title="Logistics"
         data={data}
         columns={columns}
         options={options}

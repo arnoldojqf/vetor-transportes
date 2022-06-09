@@ -10,5 +10,5 @@ export const reportsService = {
 };
 
 function getLogisticsAnalitico() {
-    return fetchWrapper.get(`${baseUrl}/getLogisticsAnalitico`);
+    return fetchWrapper.get(`${baseUrl}/logistics-analitico`);
 }

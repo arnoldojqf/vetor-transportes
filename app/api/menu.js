@@ -30,7 +30,7 @@ module.exports = [
   },
   {
     key: 'reports',
-    name: 'Reports',
+    name: 'Relatórios',
     icon: 'grid_on',
     child: [
       {

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import brand from 'ba-api/brand';
 import { withStyles } from '@material-ui/core/styles';
 import { SourceReader, PapperBlock } from 'ba-components';
+import DataTable from './DataTable';
 
 const styles = ({
   root: {
@@ -25,7 +26,7 @@ class LogisticsAnalitico extends Component {
           <meta property="twitter:title" content={title} />
           <meta property="twitter:description" content={description} />
         </Helmet>
-        <PapperBlock title="Advanced Data Table" desc="It uses npm mui-datatables. It's easy to use, you just describe columns and data collection. After that it will magically build features such as filtering, viewing / hiding columns, exporting to CSV downloads, printing, and more.">
+        <PapperBlock title="Relatório Logistics Analítico" desc="Dados obtidos a partir de importação do sistema Logistics do MELI.">
           <div>
             <DataTable />
             <SourceReader componentName={docSrc + 'DataTable.js'} />
