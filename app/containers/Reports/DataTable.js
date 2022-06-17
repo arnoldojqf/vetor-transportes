@@ -29,26 +29,11 @@ class DataTable extends React.Component {
       //         return data;
       //     })
           //.then(data => this.setState({ data }));
-          .then(data => this.setState({ data }));
+          .then(data => { console.log('data', data); this.setState({ data }); });
   }
 
   render() {
     const columns = [
-      {
-        name: "_id",
-        label: "_id",
-        options: {
-          filter: false,
-          display: 'excluded',
-        },
-      },
-      {
-        name: "id",
-        label: "id",
-        options: {
-          filter: false,
-        },
-      },
       {
         name: "facilityId",
         label: "Operação",
@@ -57,7 +42,7 @@ class DataTable extends React.Component {
         },
       },
       {
-        name: "driver.driverName",
+        name: "driverName",
         label: "Motorista",
         options: {
           filter: true,          
@@ -71,21 +56,21 @@ class DataTable extends React.Component {
         }
       },
       {        
-        name: "counters.total",
+        name: "total",
         label: "SPR",
         options: {
           filter: false,
         }
       },
       {
-        name: "counters.delivered",
+        name: "delivered",
         Label: "Entregue",
         options: {
           filter: false,
         }
       },
       {
-        name: "counters.notDelivered",
+        name: "notDelivered",
         label: "Insucesso",
         options: {
           filter: false,
