@@ -57,14 +57,14 @@ class DataTable extends React.Component {
       },
       {        
         name: "total",
-        label: "SPR",
+        label: "Pacotes",
         options: {
           filter: false,
         }
       },
       {
         name: "delivered",
-        Label: "Entregue",
+        label: "Entregue",
         options: {
           filter: false,
         }
@@ -79,13 +79,6 @@ class DataTable extends React.Component {
       {
         name: "dtInitDate",
         label: "Data Início",
-        options: {
-          filter: true,
-        }
-      },
-      {
-        name: "dtFinalDate",
-        label: "Data Fim",
         options: {
           filter: true,
         }
