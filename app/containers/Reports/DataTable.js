@@ -35,6 +35,13 @@ class DataTable extends React.Component {
   render() {
     const columns = [
       {
+        name: "routeId",
+        label: "Id",
+        options: {
+          filter: true,
+        },
+      },
+      {
         name: "facilityId",
         label: "Operação",
         options: {
@@ -47,12 +54,40 @@ class DataTable extends React.Component {
         options: {
           filter: true,          
         }
+      },  
+      {
+        name: "strInitDate",
+        label: "Data",
+        options: {
+          filter: true,
+        }
+      },
+      {
+        name: "hourInitDate",
+        label: "Hora",
+        options: {
+          filter: true,
+        }
       },      
+      {
+        name: "routes",
+        label: "Qt. Rotas",
+        options: {
+          filter: true,
+        },
+      },
       {
         name: "carrier",
         label: "Transportadora",
         options: {
           filter: true,
+        }
+      },
+      {        
+        name: "spr",
+        label: "SPR",
+        options: {
+          filter: false,
         }
       },
       {        
@@ -75,12 +110,47 @@ class DataTable extends React.Component {
         options: {
           filter: false,
         }
+      },      
+      {
+        name: "cycle",
+        label: "Ciclo",
+        options: {
+          filter: false,
+        }
+      },
+      {        
+        name: "ds",
+        label: "DS",
+        options: {
+          filter: false,
+        }
       },
       {
-        name: "dtInitDate",
-        label: "Data Início",
+        name: "orh",
+        label: "ORH",
         options: {
-          filter: true,
+          filter: false,
+        }
+      },
+      {
+        name: "orhMax",
+        label: "ORH MAX",
+        options: {
+          filter: false,
+        }
+      },
+      {
+        name: "dpph",
+        label: "DPPH",
+        options: {
+          filter: false,
+        }
+      },
+      {
+        name: "pnr",
+        label: "PNR",
+        options: {
+          filter: false,
         }
       },
     ];
