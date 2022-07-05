@@ -155,6 +155,13 @@ class DataTable extends React.Component {
           filter: false,
         }
       },
+      {
+        name: "claimsData",
+        label: "Claims",
+        options: {
+          display: false,
+        }
+      },
     ];
 
     const data = this.state.data;    
@@ -183,7 +190,7 @@ class DataTable extends React.Component {
         const colSpan = rowData.length + 1;
         return (
           <TableRow>
-            <TableCell colSpan={colSpan}>Custom expandable row option. Data: {JSON.stringify(rowData)}</TableCell>
+            <TableCell colSpan={colSpan}>Custom expandable row option. Data: { JSON.stringify(rowData)}</TableCell>
           </TableRow>
         );
       },
