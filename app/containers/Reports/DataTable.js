@@ -34,7 +34,7 @@ class DataTable extends React.Component {
           .then(data => { console.log('data', data); this.setState({ data }); });
   }
 
-  render() {
+  render() {    
     const columns = [
       {
         name: "routeId",
@@ -149,8 +149,15 @@ class DataTable extends React.Component {
         }
       },
       {
-        name: "pnr",
-        label: "PNR",
+        name: "cntClaims",
+        label: "Reclamações",
+        options: {
+          filter: false,
+        }
+      },
+      {
+        name: "contactRate",
+        label: "Contact Rate",
         options: {
           filter: false,
         }
@@ -162,14 +169,47 @@ class DataTable extends React.Component {
           display: false,
         }
       },
-    ];
+    ];    
+    
+    const columnsClaims = [
+      {
+        name: "CLA_CLAIM_ID",
+        label: "Id",
+      },
+      {
+        name: "dtClaimOpen",
+        label: "Data",
+      },
+      {
+        name: "CLAIM_OPENED_DATE",
+        label: "Data",
+      },
+      {
+        name: "ITEM_DESC",
+        label: "Item",
+      },
+      {
+        name: "MESSAGE",
+        label: "Mensagem",
+      },
+    ]
 
-    const data = this.state.data;    
+    const optionsClaims = {
+      search: false,
+      filter: false,
+      download: false,
+      pagination: false,
+      print: false,
+      viewColumns: false
+    }
+
+    const data = this.state.data;   
 
     const options = {
       filter: true,
       filterType: 'dropdown',
       responsive: 'stacked',
+      selectableRows: 'none',
       enableNestedDataAccess: '.', // allows nested data separated by "." (see column names and the data structure above)
       print: true,
       rowsPerPage: 10,
@@ -177,21 +217,31 @@ class DataTable extends React.Component {
       expandableRows: true,
       expandableRowsHeader: false,
       expandableRowsOnClick: true,
-      isRowExpandable: (dataIndex, expandedRows) => {
-        if (dataIndex === 3 || dataIndex === 4) return false;
+      // isRowExpandable: (dataIndex, expandedRows) => {
+      //   if (dataIndex === 3 || dataIndex === 4) return false;
 
-        // Prevent expand/collapse of any row if there are 4 rows expanded already (but allow those already expanded to be collapsed)
-        if (expandedRows.data.length > 4 && expandedRows.data.filter(d => d.dataIndex === dataIndex).length === 0)
-          return false;
-        return true;
-      },
+      //   // Prevent expand/collapse of any row if there are 4 rows expanded already (but allow those already expanded to be collapsed)
+      //   if (expandedRows.data.length > 4 && expandedRows.data.filter(d => d.dataIndex === dataIndex).length === 0)
+      //     return false;
+      //   return true;
+      // },
       rowsExpanded: [0, 1],
       renderExpandableRow: (rowData, rowMeta) => {
         const colSpan = rowData.length + 1;
+        const claimsData = rowData[rowData.length-1]        
         return (
-          <TableRow>
-            <TableCell colSpan={colSpan}>Custom expandable row option. Data: { JSON.stringify(rowData)}</TableCell>
-          </TableRow>
+            <TableRow>
+              <TableCell colSpan={colSpan}>
+
+              <MUIDataTable
+                title={"Reclamações"}
+                data={claimsData}
+                columns={columnsClaims}
+                options={ optionsClaims }
+              />
+
+              </TableCell>
+            </TableRow>
         );
       },
       onRowExpansionChange: (curExpanded, allExpanded, rowsExpanded) =>
