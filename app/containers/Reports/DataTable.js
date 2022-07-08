@@ -1,8 +1,15 @@
 import React from 'react';
 import MUIDataTable, { ExpandButton } from 'mui-datatables';
 import { reportsService } from '../../services/report.service';
+import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
+import { TableCell, TableRow } from '@material-ui/core';
+import {
+  FormGroup,
+  FormLabel,
+  TextField,
 
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+} from '@material-ui/core';
 /*
   It uses npm mui-datatables. It's easy to use, you just describe columns and data collection.
   Checkout full documentation here :
@@ -40,49 +47,126 @@ class DataTable extends React.Component {
         name: "routeId",
         label: "Id",
         options: {
-          filter: true,
+          filter: false,
         },
       },
       {
         name: "facilityId",
         label: "Operação",
         options: {
-          filter: true,
+          filter: false,
         },
       },
       {
         name: "driverName",
         label: "Motorista",
         options: {
-          filter: true,          
+          filter: false,          
         }
       },  
       {
         name: "strInitDate",
         label: "Data",
         options: {
-          filter: true,
-        }
+          filter: false,          
+        }        
       },
       {
-        name: "hourInitDate",
-        label: "Hora",
+        name: "tsInitDate",        
         options: {
+          display: false,
           filter: true,
+          filterType: 'custom',
+
+          // if the below value is set, these values will be used every time the table is rendered.
+          // it's best to let the table internally manage the filterList
+          //filterList: [25, 50],
+          
+          customFilterListOptions: {
+            render: v => {
+              if (v[0] && v[1]) {
+                return [`De: ${v[0].format('DD/MM/YYYY HH:mm:ss')}`, `Até: ${v[1].format('DD/MM/YYYY HH:mm:ss')}`];
+              }
+
+              return [];
+            },
+            update: (filterList, filterPos, index) => {
+              console.log('customFilterListOnDelete: ', filterList, filterPos, index);
+
+              if (filterPos === 0) {
+                filterList[index].splice(filterPos, 1, '');
+              } else if (filterPos === 1) {
+                filterList[index].splice(filterPos, 1);
+              } else if (filterPos === -1) {
+                filterList[index] = [];
+              }
+
+              return filterList;
+            },
+          },
+          filterOptions: {
+            names: [],
+            logic(tsInitDate, filters) {  
+              
+              if(!tsInitDate){
+                return true;
+              } else if (filters[0] && filters[1]) {                                
+                return new Date(tsInitDate) < new Date(filters[0].format()) || new Date(tsInitDate) > new Date(filters[1].format());
+              } else if (filters[0]) {                
+                return new Date(tsInitDate) < new Date(filters[0].format());
+              } else if (filters[1]) {
+                return new Date(tsInitDate) > new Date(filters[1].format());
+              }
+              return false;
+            },
+            display: (filterList, onChange, index, column) => (
+              <div>
+                <FormLabel>Data</FormLabel>
+                <FormGroup row>
+                  <MuiPickersUtilsProvider utils={MomentUtils}>
+                    <DateTimePicker
+                      autoOk
+                      ampm={false}
+                      disableFuture
+                      value={filterList[index][0] || new Date(new Date().setHours('00','00', '00')) }
+                      onChange={ (newValue) => {
+                        filterList[index][0] = newValue;
+                        onChange(filterList[index], index, column);
+                      } }
+                      label="De"
+                    />
+                  </MuiPickersUtilsProvider>
+                  <MuiPickersUtilsProvider utils={MomentUtils}>
+                    <DateTimePicker
+                      autoOk
+                      ampm={false}
+                      disableFuture
+                      value={filterList[index][1] || new Date(new Date().setHours('23', '59', '59')) }
+                      onChange={ (newValue) => {
+                        filterList[index][1] = newValue;
+                        onChange(filterList[index], index, column);
+                      } }
+                      label="Até"
+                    />
+                  </MuiPickersUtilsProvider>
+                </FormGroup>
+              </div>
+            ),
+          },
         }
-      },      
+      },
       {
         name: "routes",
         label: "Qt. Rotas",
         options: {
-          filter: true,
+          filter: false,
         },
       },
       {
         name: "carrier",
         label: "Transportadora",
         options: {
-          filter: true,
+          filter: false,
         }
       },
       {        
@@ -167,6 +251,7 @@ class DataTable extends React.Component {
         label: "Claims",
         options: {
           display: false,
+          filter: false,
         }
       },
     ];    
@@ -226,23 +311,23 @@ class DataTable extends React.Component {
       //   return true;
       // },
       rowsExpanded: [0, 1],
-      renderExpandableRow: (rowData, rowMeta) => {
+      renderExpandableRow: (rowData, rowMeta) => {        
         const colSpan = rowData.length + 1;
         const claimsData = rowData[rowData.length-1]        
-        return (
-            <TableRow>
-              <TableCell colSpan={colSpan}>
 
-              <MUIDataTable
-                title={"Reclamações"}
-                data={claimsData}
-                columns={columnsClaims}
-                options={ optionsClaims }
-              />
-
-              </TableCell>
-            </TableRow>
-        );
+        if(claimsData)
+          return (
+              <TableRow>
+                <TableCell colSpan={colSpan}>              
+                    <MUIDataTable
+                    title={"Reclamações"}
+                    data={claimsData}
+                    columns={columnsClaims}
+                    options={ optionsClaims }
+                  />                
+                </TableCell>
+              </TableRow>
+          );
       },
       onRowExpansionChange: (curExpanded, allExpanded, rowsExpanded) =>
         console.log(curExpanded, allExpanded, rowsExpanded),  
