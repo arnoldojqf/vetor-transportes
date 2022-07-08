@@ -226,6 +226,13 @@ class DataTable extends React.Component {
         }
       },
       {
+        name: "pOrh",
+        label: "ORH(%)",
+        options: {
+          filter: false,
+        }
+      },
+      {
         name: "dpph",
         label: "DPPH",
         options: {
