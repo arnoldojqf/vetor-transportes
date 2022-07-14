@@ -51,7 +51,7 @@ class DataTable extends React.Component {
         },
       },
       {
-        name: "facilityId",
+        name: "operation",
         label: "Operação",
         options: {
           filter: false,
