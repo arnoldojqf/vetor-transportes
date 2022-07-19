@@ -1,18 +1,20 @@
 FROM node:11.13.0
 
-RUN mkdir -p /usr/src/app
+# RUN mkdir -p /usr/src/app
 
-WORKDIR /usr/src/app
+# WORKDIR /usr/src/app
 
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+WORKDIR /usr/src/vetorfe
 
-COPY package.json /usr/src/app/package.json
+# ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-RUN npm install --unsafe-perm --versbose
+# COPY package.json /usr/src/app/package.json
 
-COPY . /usr/src/app
+#RUN npm install --unsafe-perm --versbose
 
 RUN npm run build
+
+COPY . /usr/src/vetorfe
 
 EXPOSE 80
 
