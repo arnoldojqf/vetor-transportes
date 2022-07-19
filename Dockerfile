@@ -1,6 +1,6 @@
 FROM node:11.13.0
 
-WORKDIR '/app'
+WORKDIR '/usr/src/vetorfe'
 
 COPY package*.json ./
 
