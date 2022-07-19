@@ -2,7 +2,7 @@ FROM node:11.13.0
 
 WORKDIR '/app'
 
-COPY package.json .
+COPY package*.json ./
 
 # RUN npm install
 # If you are building your code for production
