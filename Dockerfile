@@ -1,16 +1,18 @@
 FROM node:11.13.0
 
-WORKDIR '/usr/src/vetorfe'
+ENV HOME=/usr/src
 
-COPY package*.json ./
+COPY package.json $HOME/vetorfe/
+
+WORKDIR $HOME/vetorfe
 
 RUN npm install --unsafe-perm
 # If you are building your code for production
 #RUN npm ci --only=production
 
-RUN npm run build
+COPY . $HOME/vetorfe
 
-COPY . .
+RUN npm run build
 
 EXPOSE 80
 
