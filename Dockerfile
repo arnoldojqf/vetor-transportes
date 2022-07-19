@@ -4,7 +4,7 @@ WORKDIR '/usr/src/vetorfe'
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install --unsafe-perm
 # If you are building your code for production
 #RUN npm ci --only=production
 
