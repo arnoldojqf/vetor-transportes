@@ -3,9 +3,9 @@ FROM node:11.13.0
 #RUN mkdir -p /usr/src/app
 WORKDIR /app
 #ENV PATH /usr/src/app/node_modules/.bin:$PATH
-COPY package*.json ./
+#COPY package*.json ./
 
-COPY ./internals ./
+COPY . .
 
 RUN npm install --unsafe-perm
 #RUN npm install react-scripts@1.1.1 -g --silent
