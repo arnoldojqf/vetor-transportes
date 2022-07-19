@@ -1,16 +1,16 @@
 FROM node:11.13.0
 
-ENV HOME=/usr/src
+RUN mkdir -p /usr/src/app
 
-COPY package.json $HOME/vetorfe/
+WORKDIR /usr/src/app
 
-WORKDIR $HOME/vetorfe
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
+COPY package.json /usr/src/app/package.json
 
 RUN npm install --unsafe-perm
-# If you are building your code for production
-#RUN npm ci --only=production
 
-COPY . $HOME/vetorfe
+COPY . /usr/src/app
 
 RUN npm run build
 
