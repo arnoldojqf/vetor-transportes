@@ -1,20 +1,13 @@
 FROM node:11.13.0
 
-# RUN mkdir -p /usr/src/app
-
-# WORKDIR /usr/src/app
-
-WORKDIR /usr/src/vetorfe
-
-# ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
-COPY package.json /usr/src/vetorfe/package.json
-
-#RUN npm install --unsafe-perm --versbose
-
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+COPY package.json /usr/src/app/package.json
+RUN npm install --unsafe-perm
+#RUN npm install react-scripts@1.1.1 -g --silent
+COPY . /usr/src/app
 RUN npm run build
-
-COPY . /usr/src/vetorfe
 
 EXPOSE 80
 
