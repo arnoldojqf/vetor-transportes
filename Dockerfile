@@ -5,6 +5,8 @@ WORKDIR /app
 #ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY package*.json ./
 
+COPY ./internals ./
+
 RUN npm install --unsafe-perm
 #RUN npm install react-scripts@1.1.1 -g --silent
 
