@@ -177,8 +177,7 @@
     "sanitize.css": "8.0.0",
     "serve-favicon": "^2.4.5",
     "slick-carousel": "^1.8.1",
-    "warning": "4.0.2",
-    "whatwg-fetch": "2.0.4"
+    "warning": "4.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.4.3",
@@ -260,7 +259,6 @@
     "webpack-cli": "3.3.0",
     "webpack-dev-middleware": "3.6.2",
     "webpack-hot-middleware": "2.24.3 ",
-    "webpack-pwa-manifest": "4.0.0",
-    "whatwg-fetch": "3.0.0"
+    "webpack-pwa-manifest": "4.0.0"
   }
 }
