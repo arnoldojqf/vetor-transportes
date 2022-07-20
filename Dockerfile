@@ -8,7 +8,7 @@ ENV NODE_ENV production
 #COPY package*.json ./
 
 COPY package.json ./
-COPY package-lock.json ./
+#COPY package-lock.json ./
 COPY ./ ./
 
 RUN npm install --unsafe-perm --include=dev
