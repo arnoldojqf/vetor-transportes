@@ -1,8 +1,6 @@
-console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
 
 // No need to build the DLL in production
-if (process.env.NODE_ENV === 'production') {
-  console.log('dependencies.js; process.exit(0)');
+if (process.env.NODE_ENV === 'production') {  
   process.exit(0);
 }
 
