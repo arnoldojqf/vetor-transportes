@@ -1,5 +1,8 @@
+echo('process.env.NODE_ENV: ', process.env.NODE_ENV);
+
 // No need to build the DLL in production
 if (process.env.NODE_ENV === 'production') {
+  echo('dependencies.js; process.exit(0)');
   process.exit(0);
 }
 
