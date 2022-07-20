@@ -11,7 +11,7 @@ COPY package.json ./
 COPY package-lock.json ./
 COPY ./ ./
 
-RUN npm install --unsafe-perm
+RUN npm install --unsafe-perm --include=dev
 #RUN npm install react-scripts@1.1.1 -g --silent
 
 RUN npm run build
