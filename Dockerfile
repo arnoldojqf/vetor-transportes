@@ -1,8 +1,8 @@
 FROM node:12.22.12
 
 ARG MAX_OLD_SPACE_SIZE=325
-ARG MEMORY=600m
-ARG MEMORY_SWAP=4g
+ARG MEMORY=500m
+ARG MEMORY_SWAP=2g
 ENV NODE_OPTIONS=--max-old-space-size=${MAX_OLD_SPACE_SIZE} --memory=${MEMORY} --memory-swap=${MEMORY_SWAP}
 
 #RUN mkdir -p /usr/src/app
