@@ -2,7 +2,7 @@ FROM node:12.22.12
 
 WORKDIR /app
 
-ENV NODE_OPTIONS=--max-old-space-size=512
+ENV NODE_OPTIONS=--max-old-space-size=1536
 ENV PATH /app/node_modules/.bin:$PATH
 ENV NODE_ENV production
 

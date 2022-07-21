@@ -23,26 +23,26 @@ module.exports = require('./webpack.base.babel')({
   },
 
   optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          warnings: false,
-          compress: {
-            comparisons: false,
-          },
-          parse: {},
-          mangle: true,
-          output: {
-            comments: false,
-            ascii_only: true,
-          },
-        },
-        parallel: true,
-        cache: true,
-        sourceMap: true,
-      }),
-    ],
+    minimize: false,
+    //minimizer: [
+     // new TerserPlugin({
+      //  terserOptions: {
+       //   warnings: false,
+        //  compress: {
+         //   comparisons: false,
+          //},
+          //parse: {},
+          //mangle: true,
+          //output: {
+          //  comments: false,
+          //  ascii_only: true,
+          //},
+        //},
+        //parallel: true,
+        //cache: true,
+        //sourceMap: false,
+      //}),
+    //],
     nodeEnv: 'production',
     sideEffects: true,
     concatenateModules: true,
@@ -148,7 +148,7 @@ module.exports = require('./webpack.base.babel')({
     }),
   ],
 
-  devtool: '(none)',
+  devtool: false,
 
   performance: {
     assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
