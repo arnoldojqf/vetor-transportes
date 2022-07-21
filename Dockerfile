@@ -1,5 +1,9 @@
 FROM node:12.22.12
 
+ARG MAX_OLD_SPACE_SIZE=4096
+ARG NPM_TOKEN
+ENV NODE_OPTIONS=--max-old-space-size=${MAX_OLD_SPACE_SIZE}
+
 #RUN mkdir -p /usr/src/app
 WORKDIR /app
 
