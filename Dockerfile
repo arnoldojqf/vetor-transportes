@@ -1,25 +1,16 @@
 FROM node:12.22.12
 
-ARG MAX_OLD_SPACE_SIZE=325
-ARG MEMORY=500m
-ARG MEMORY_SWAP=2g
-ENV NODE_OPTIONS=--max-old-space-size=${MAX_OLD_SPACE_SIZE} --memory=${MEMORY} --memory-swap=${MEMORY_SWAP}
-
-#RUN mkdir -p /usr/src/app
 WORKDIR /app
 
+ENV NODE_OPTIONS=--max-old-space-size=512
 ENV PATH /app/node_modules/.bin:$PATH
 ENV NODE_ENV production
-#COPY package*.json ./
 
 COPY package.json ./
-#COPY package-lock.json ./
+
 COPY ./ ./
 
-USER node
-
-RUN npm install --unsafe-perm --silent
-#RUN npm install react-scripts@1.1.1 -g --silent
+RUN npm install --unsafe-perm
 
 RUN npm run build
 
