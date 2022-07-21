@@ -18,7 +18,7 @@ COPY ./ ./
 
 USER node
 
-RUN npm install --unsafe-perm --include=dev
+RUN npm install --unsafe-perm --silent
 #RUN npm install react-scripts@1.1.1 -g --silent
 
 RUN npm run build
