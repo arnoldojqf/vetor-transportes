@@ -1,13 +1,13 @@
 {
-  "name": "Boss-Ultimate",
-  "version": "1.7.0",
-  "description": "Boss Ultimate - React Redux Material Admin Template",
+  "name": "Vetor-Transportes",
+  "version": "0.0.1",
+  "description": "Vetor Transportes - Software de Gestão",
   "private": true,
   "engines": {
     "npm": ">=5",
     "node": ">=8"
   },
-  "author": "Boss Ultimate Team",
+  "author": "arnoldojqf",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
