@@ -1,1 +1,1 @@
-export CrudTbFormAccounts from './crudTbFormAccounts';
+export CrudTbFormAccounts from './CrudTbFormAccounts';
