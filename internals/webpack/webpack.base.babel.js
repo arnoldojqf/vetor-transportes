@@ -11,14 +11,12 @@ const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
-  output: Object.assign(
-    {
-      // Compile into js/build.js
-      path: path.resolve(process.cwd(), 'build'),
-      publicPath: '/',
-    },
-    options.output,
-  ), // Merge with env dependent settings
+  output: {
+    // Compile into js/build.js
+    path: path.resolve(process.cwd(), 'build'),
+    publicPath: '/',
+    ...options.output,
+  }, // Merge with env dependent settings
   devServer: {
     inline: false,
   },
@@ -207,7 +205,7 @@ module.exports = options => ({
   externals: {
     // global app config object
     config: JSON.stringify({
-      apiUrl: 'http://ec2-18-134-129-75.eu-west-2.compute.amazonaws.com:4000'
+      apiUrl: process.env.API_URL
     })
   },
 });
