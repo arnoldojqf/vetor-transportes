@@ -18,7 +18,6 @@ class DataTable extends React.Component {
   state = { data: [] }
 
   componentDidMount() {
-    
     reportsService.getLogisticsAnalitico()
     // .then(resp =>
     //   //console.log('resp: ', resp)
