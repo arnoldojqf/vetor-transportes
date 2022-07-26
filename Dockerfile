@@ -4,13 +4,12 @@ WORKDIR /app
 
 ENV NODE_OPTIONS=--max-old-space-size=1536
 ENV PATH /app/node_modules/.bin:$PATH
-ENV NODE_ENV production
 
-COPY package.json ./
+COPY package*.json ./
 
 COPY ./ ./
 
-RUN npm install --unsafe-perm
+RUN npm ci --unsafe-perm
 
 RUN npm run build
 
