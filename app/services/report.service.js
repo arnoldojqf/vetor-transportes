@@ -9,6 +9,6 @@ export const reportsService = {
     getLogisticsAnalitico,
 };
 
-function getLogisticsAnalitico() {
-    return fetchWrapper.get(`${baseUrl}/logistics-analitico`);
+async function getLogisticsAnalitico() {
+    return await fetchWrapper.get(`${baseUrl}/logistics-analitico`);
 }
