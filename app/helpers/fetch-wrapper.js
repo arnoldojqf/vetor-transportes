@@ -7,7 +7,7 @@ export const fetchWrapper = {
   delete: _delete
 };
 
-const baseUrl = `${process.env.API_HOST}:${process.env.API_PORT}`;
+const baseUrl = 'http://ec2-18-134-129-75.eu-west-2.compute.amazonaws.com:4000/accounts';
 
 async function get(url) {
   const requestOptions = {
