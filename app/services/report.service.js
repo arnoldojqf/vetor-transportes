@@ -1,9 +1,6 @@
-import { BehaviorSubject } from 'rxjs';
+import { fetchWrapper } from 'ba-app-helpers';
 
-import config from 'config';
-import { fetchWrapper, history } from 'ba-app-helpers';
-
-const baseUrl = `${process.env.API_URL}/reports`;
+const baseUrl = `${process.env.API_HOST}:${process.env.API_PORT}/reports`;
 
 export const reportsService = {
   getLogisticsAnalitico,

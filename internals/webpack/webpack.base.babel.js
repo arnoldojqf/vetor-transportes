@@ -209,7 +209,7 @@ module.exports = options => ({
   externals: {
     // global app config object
     config: JSON.stringify({
-      apiUrl: process.env.API_URL
+      apiUrl: `${process.env.API_HOST}:${process.env.API_PORT}`
     })
   },
 });

@@ -1,11 +1,10 @@
 import { BehaviorSubject } from 'rxjs';
 
-import config from 'config';
 import { fetchWrapper, history } from 'ba-app-helpers';
 import UserProfile from '../shared/UserProfile';
 
 const userSubject = new BehaviorSubject(null);
-const baseUrl = `${process.env.API_URL}/accounts`;
+const baseUrl = `${process.env.API_HOST}:${process.env.API_PORT}/accounts`;
 
 export const accountService = {
   login,
