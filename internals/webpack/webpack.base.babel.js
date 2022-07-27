@@ -206,10 +206,4 @@ module.exports = options => ({
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
-  externals: {
-    // global app config object
-    config: JSON.stringify({
-      apiUrl: `${process.env.API_HOST}:${process.env.API_PORT}`
-    })
-  },
 });
