@@ -1,6 +1,6 @@
 import { fetchWrapper } from 'ba-app-helpers';
 
-const baseUrl = `${process.env.API_HOST}:${process.env.API_PORT}/reports`;
+const baseUrl = 'http://ec2-18-134-129-75.eu-west-2.compute.amazonaws.com:4000/reports';
 
 export const reportsService = {
   getLogisticsAnalitico,

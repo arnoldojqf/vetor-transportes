@@ -4,7 +4,7 @@ import { fetchWrapper, history } from 'ba-app-helpers';
 import UserProfile from '../shared/UserProfile';
 
 const userSubject = new BehaviorSubject(null);
-const baseUrl = `${process.env.API_HOST}:${process.env.API_PORT}/accounts`;
+const baseUrl = 'http://ec2-18-134-129-75.eu-west-2.compute.amazonaws.com:4000/accounts';
 
 export const accountService = {
   login,
