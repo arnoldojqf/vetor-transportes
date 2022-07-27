@@ -5,7 +5,7 @@ import { fetchWrapper, history } from 'ba-app-helpers';
 import UserProfile from '../shared/UserProfile'
 
 const userSubject = new BehaviorSubject(null);
-const baseUrl = `${config.apiUrl}/accounts`;
+const baseUrl = `${process.env.API_URL}/accounts`;
 
 export const accountService = {
     login,

@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import config from 'config';
 import { fetchWrapper, history } from 'ba-app-helpers';
 
-const baseUrl = `${config.apiUrl}/reports`;
+const baseUrl = `${process.env.API_URL}/reports`;
 
 export const reportsService = {
   getLogisticsAnalitico,
