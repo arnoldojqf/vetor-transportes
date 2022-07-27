@@ -74,8 +74,10 @@ module.exports = options => ({
           {
             sourceMap: false,
             importLoaders: 2,
-            modules: true,
-            localIdentName: '[local]__[hash:base64:5]'
+            modules:
+            {
+              localIdentName: '[local]__[hash:base64:5]'
+            }
           }
         },
         {
@@ -87,8 +89,10 @@ module.exports = options => ({
         {
           loader: 'sass-loader',
           options: {
-            outputStyle: 'expanded',
-            sourceMap: false
+            sassOptions: {
+              outputStyle: 'expanded',
+            },
+            sourceMap: false,
           }
         }],
       },
