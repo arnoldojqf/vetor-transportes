@@ -1,4 +1,3 @@
-import config from 'config';
 import UserProfile from '../shared/UserProfile';
 
 export const fetchWrapper = {
