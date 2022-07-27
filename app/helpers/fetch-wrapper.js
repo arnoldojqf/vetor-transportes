@@ -8,6 +8,8 @@ export const fetchWrapper = {
   delete: _delete
 };
 
+const baseUrl = `${process.env.API_HOST}:${process.env.API_PORT}`;
+
 async function get(url) {
   const requestOptions = {
     method: 'GET',
@@ -54,7 +56,7 @@ function authHeader(url) {
   const user = JSON.parse(UserProfile.getUserProfile());
   console.log('user', user);
   const isLoggedIn = user && user.jwtToken;
-  const isApiUrl = url.startsWith(config.apiUrl);
+  const isApiUrl = url.startsWith(baseUrl);
   if (isLoggedIn && isApiUrl) {
     console.log('Bearer', user.jwtToken);
     return { Authorization: `Bearer ${user.jwtToken}` };
