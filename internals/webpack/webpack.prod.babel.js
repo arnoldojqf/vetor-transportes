@@ -153,4 +153,10 @@ module.exports = require('./webpack.base.babel')({
   performance: {
     assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
+  externals: {
+    // global app config object
+    config: JSON.stringify({
+      apiUrl: 'http://ec2-18-134-129-75.eu-west-2.compute.amazonaws.com:4000'
+    })
+  },
 });

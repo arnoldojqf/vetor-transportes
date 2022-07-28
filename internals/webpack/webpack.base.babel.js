@@ -170,7 +170,7 @@ module.exports = options => ({
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),        
       },
     }),
     new webpack.ContextReplacementPlugin(/^\.\/locale$/, context => {
@@ -206,10 +206,5 @@ module.exports = options => ({
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
-  externals: {
-    // global app config object
-    config: JSON.stringify({
-      apiUrl: 'http://ec2-18-134-129-75.eu-west-2.compute.amazonaws.com:4000'
-    })
-  },
+  externals: options.externals,
 });

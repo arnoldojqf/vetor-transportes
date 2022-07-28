@@ -1,4 +1,5 @@
 import UserProfile from '../shared/UserProfile';
+import config from 'config';
 
 export const fetchWrapper = {
   get,
@@ -7,7 +8,7 @@ export const fetchWrapper = {
   delete: _delete
 };
 
-const baseUrl = 'http://ec2-18-134-129-75.eu-west-2.compute.amazonaws.com:4000/accounts';
+const baseUrl = config.apiUrl;
 
 async function get(url) {
   const requestOptions = {
@@ -52,9 +53,10 @@ function _delete(url) {
 
 function authHeader(url) {
   // return auth header with jwt if user is logged in and request is to the api url
-  const user = JSON.parse(UserProfile.getUserProfile());
-  console.log('user', user);
+  const user = JSON.parse(UserProfile.getUserProfile());  
   const isLoggedIn = user && user.jwtToken;
+  console.log('url: ', url);
+  console.log('baseUrl: ', baseUrl);
   const isApiUrl = url.startsWith(baseUrl);
   if (isLoggedIn && isApiUrl) {
     console.log('Bearer', user.jwtToken);
