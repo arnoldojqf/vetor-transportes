@@ -250,8 +250,7 @@ class DataTable extends React.Component {
         }
       },
       {
-        name: 'claimsData',
-        label: 'Claims',
+        name: 'deliveries',        
         options: {
           display: false,
           filter: false,
@@ -259,36 +258,39 @@ class DataTable extends React.Component {
       },
     ];
 
-    const columnsClaims = [
+    const columnsDeliveries = [
       {
-        name: 'CLA_CLAIM_ID',
+        name: 'shipment.shipmentId',
         label: 'Id',
       },
       {
-        name: 'dtClaimOpen',
-        label: 'Data',
+        name: 'shipment.substatus',  
+        label: 'Status',      
       },
       {
-        name: 'CLAIM_OPENED_DATE',
-        label: 'Data',
+        name: 'shipment.addressType',
+        label: 'Tipo',      
       },
       {
-        name: 'ITEM_DESC',
-        label: 'Item',
+        name: 'shipment.strDateDelivery',
+        label: 'Data Entrega'
       },
       {
-        name: 'MESSAGE',
-        label: 'Mensagem',
+        name: 'address',
+        label: 'Endereço'
       },
     ];
 
-    const optionsClaims = {
+    const optionsDeliveries = {
+      responsive: 'simple',
+      enableNestedDataAccess: '.', // allows nested data separated by "." (see column names and the data structure above)
       search: false,
       filter: false,
       download: false,
       pagination: false,
       print: false,
-      viewColumns: false
+      viewColumns: false,
+      selectableRows: 'none',
     };
 
     const { data } = this.state;
@@ -316,18 +318,20 @@ class DataTable extends React.Component {
       rowsExpanded: [0, 1],
       renderExpandableRow: (rowData, rowMeta) => {
         const colSpan = rowData.length + 1;
-        const claimsData = rowData[rowData.length - 1];
+        const deliveriesData = rowData[rowData.length - 1];
 
-        if (claimsData) {
-          return (
+        if (deliveriesData) {
+          return (            
             <TableRow>
               <TableCell colSpan={colSpan}>
-                <MUIDataTable
-                  title="Reclamações"
-                  data={claimsData}
-                  columns={columnsClaims}
-                  options={optionsClaims}
-                />
+                <div style={{width: '70%'}}>
+                  <MUIDataTable
+                    title="Entregas"
+                    data={deliveriesData}
+                    columns={columnsDeliveries}
+                    options={optionsDeliveries}
+                  />
+                </div>
               </TableCell>
             </TableRow>
           );
