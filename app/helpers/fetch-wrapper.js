@@ -1,5 +1,5 @@
-import UserProfile from '../shared/UserProfile';
 import config from 'config';
+import UserProfile from '../shared/UserProfile';
 
 export const fetchWrapper = {
   get,
@@ -53,7 +53,7 @@ function _delete(url) {
 
 function authHeader(url) {
   // return auth header with jwt if user is logged in and request is to the api url
-  const user = JSON.parse(UserProfile.getUserProfile());  
+  const user = JSON.parse(UserProfile.getUserProfile());
   const isLoggedIn = user && user.jwtToken;
   console.log('url: ', url);
   console.log('baseUrl: ', baseUrl);
