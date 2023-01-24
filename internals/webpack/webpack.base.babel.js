@@ -11,14 +11,12 @@ const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
-  output: Object.assign(
-    {
-      // Compile into js/build.js
-      path: path.resolve(process.cwd(), 'build'),
-      publicPath: '/',
-    },
-    options.output,
-  ), // Merge with env dependent settings
+  output: {
+    // Compile into js/build.js
+    path: path.resolve(process.cwd(), 'build'),
+    publicPath: '/',
+    ...options.output,
+  }, // Merge with env dependent settings
   devServer: {
     inline: false,
   },
@@ -76,8 +74,10 @@ module.exports = options => ({
           {
             sourceMap: false,
             importLoaders: 2,
-            modules: true,
-            localIdentName: '[local]__[hash:base64:5]'
+            modules:
+            {
+              localIdentName: '[local]__[hash:base64:5]'
+            }
           }
         },
         {
@@ -89,8 +89,10 @@ module.exports = options => ({
         {
           loader: 'sass-loader',
           options: {
-            outputStyle: 'expanded',
-            sourceMap: false
+            sassOptions: {
+              outputStyle: 'expanded',
+            },
+            sourceMap: false,
           }
         }],
       },
@@ -204,10 +206,5 @@ module.exports = options => ({
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
-  externals: {
-    // global app config object
-    config: JSON.stringify({
-        apiUrl: 'http://localhost:4000'
-    })
-  },
+  externals: options.externals,
 });

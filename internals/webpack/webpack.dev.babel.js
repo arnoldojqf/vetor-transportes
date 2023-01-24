@@ -68,6 +68,12 @@ module.exports = require('./webpack.base.babel')({
   performance: {
     hints: false,
   },
+  externals: {
+    // global app config object
+    config: JSON.stringify({
+      apiUrl: 'http://localhost:4000'
+    })
+  },
 });
 
 /**

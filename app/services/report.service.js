@@ -1,14 +1,12 @@
-import { BehaviorSubject } from 'rxjs';
-
+import { fetchWrapper } from 'ba-app-helpers';
 import config from 'config';
-import { fetchWrapper, history } from 'ba-app-helpers';
 
 const baseUrl = `${config.apiUrl}/reports`;
 
 export const reportsService = {
-    getLogisticsAnalitico,
+  getLogisticsAnalitico,
 };
 
-function getLogisticsAnalitico() {
-    return fetchWrapper.get(`${baseUrl}/logistics-analitico`);
+async function getLogisticsAnalitico() {
+  return await fetchWrapper.get(`${baseUrl}/logistics-analitico`);
 }

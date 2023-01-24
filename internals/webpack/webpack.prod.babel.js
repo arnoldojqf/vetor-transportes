@@ -23,26 +23,26 @@ module.exports = require('./webpack.base.babel')({
   },
 
   optimization: {
-    minimize: false,
-    //minimizer: [
-     // new TerserPlugin({
-      //  terserOptions: {
-       //   warnings: false,
-        //  compress: {
-         //   comparisons: false,
-          //},
-          //parse: {},
-          //mangle: true,
-          //output: {
-          //  comments: false,
-          //  ascii_only: true,
-          //},
-        //},
-        //parallel: true,
-        //cache: true,
-        //sourceMap: false,
-      //}),
-    //],
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          warnings: false,
+          compress: {
+            comparisons: false,
+          },
+          parse: {},
+          mangle: true,
+          output: {
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        parallel: true,
+        cache: true,
+        sourceMap: false,
+      }),
+    ],
     nodeEnv: 'production',
     sideEffects: true,
     concatenateModules: true,
@@ -152,5 +152,11 @@ module.exports = require('./webpack.base.babel')({
 
   performance: {
     assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
+  },
+  externals: {
+    // global app config object
+    config: JSON.stringify({
+      apiUrl: 'http://ec2-18-134-129-75.eu-west-2.compute.amazonaws.com:4000'
+    })
   },
 });
